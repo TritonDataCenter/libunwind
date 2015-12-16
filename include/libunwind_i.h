@@ -82,6 +82,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.  */
 #   else
 #     error Host has unknown byte-order.
 #   endif
+# elif defined(__sun)
+#   include <sys/isa_defs.h>
+#   if defined(_LITTLE_ENDIAN)
+#     define __BYTE_ORDER __LITTLE_ENDIAN
+#   elif defined(_BIG_ENDIAN)
+#     define __BYTE_ORDER __BIG_ENDIAN
+#   else
+#     error Host has unknown byte-order.
+# endif
 # else
 #   error Host has unknown byte-order.
 # endif
