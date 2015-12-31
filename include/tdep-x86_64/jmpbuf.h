@@ -40,4 +40,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.  */
 #define JB_MASK_SAVED   0
 #define JB_MASK         9
 
+#elif defined __sun__
+
+#warning These are probably wrong, guess from the interwebs
+
+#define JB_SP		1
+#define JB_RP		0
+#define JB_MASK_SAVED	0
+#define JB_MASK		12
+
 #endif

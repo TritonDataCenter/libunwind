@@ -35,29 +35,42 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.  */
 #elif defined(HAVE_SYS_ENDIAN_H)
 # include <sys/endian.h>
 #endif
-#if defined(__BYTE_ORDER) && __BYTE_ORDER == __BIG_ENDIAN
-# define WE_ARE_BIG_ENDIAN    1
-# define WE_ARE_LITTLE_ENDIAN 0
-#elif defined(__BYTE_ORDER) && __BYTE_ORDER == __LITTLE_ENDIAN
-# define WE_ARE_BIG_ENDIAN    0
-# define WE_ARE_LITTLE_ENDIAN 1
-#elif defined(_BYTE_ORDER) && _BYTE_ORDER == _BIG_ENDIAN
-# define WE_ARE_BIG_ENDIAN    1
-# define WE_ARE_LITTLE_ENDIAN 0
-#elif defined(_BYTE_ORDER) && _BYTE_ORDER == _LITTLE_ENDIAN
-# define WE_ARE_BIG_ENDIAN    0
-# define WE_ARE_LITTLE_ENDIAN 1
-#elif defined(BYTE_ORDER) && BYTE_ORDER == BIG_ENDIAN
-# define WE_ARE_BIG_ENDIAN    1
-# define WE_ARE_LITTLE_ENDIAN 0
-#elif defined(BYTE_ORDER) && BYTE_ORDER == LITTLE_ENDIAN
-# define WE_ARE_BIG_ENDIAN    0
-# define WE_ARE_LITTLE_ENDIAN 1
-#elif defined(__386__)
-# define WE_ARE_BIG_ENDIAN    0
-# define WE_ARE_LITTLE_ENDIAN 1
+#if defined(__sun__)
+# include <sys/isa_defs.h>
+# if defined(_LITTLE_ENDIAN)
+#  define WE_ARE_BIG_ENDIAN    0
+#  define WE_ARE_LITTLE_ENDIAN 1
+# elif defined(_BIG_ENDIAN)
+#  define WE_ARE_BIG_ENDIAN    1
+#  define WE_ARE_LITTLE_ENDIAN 0
+# else
+#  error Host has unknown byte-order.
+# endif
 #else
-# error "Can't determine endianness"
+# if defined(__BYTE_ORDER) && __BYTE_ORDER == __BIG_ENDIAN
+#  define WE_ARE_BIG_ENDIAN    1
+#  define WE_ARE_LITTLE_ENDIAN 0
+# elif defined(__BYTE_ORDER) && __BYTE_ORDER == __LITTLE_ENDIAN
+#  define WE_ARE_BIG_ENDIAN    0
+#  define WE_ARE_LITTLE_ENDIAN 1
+# elif defined(_BYTE_ORDER) && _BYTE_ORDER == _BIG_ENDIAN
+#  define WE_ARE_BIG_ENDIAN    1
+#  define WE_ARE_LITTLE_ENDIAN 0
+# elif defined(_BYTE_ORDER) && _BYTE_ORDER == _LITTLE_ENDIAN
+#  define WE_ARE_BIG_ENDIAN    0
+#  define WE_ARE_LITTLE_ENDIAN 1
+# elif defined(BYTE_ORDER) && BYTE_ORDER == BIG_ENDIAN
+#  define WE_ARE_BIG_ENDIAN    1
+#  define WE_ARE_LITTLE_ENDIAN 0
+# elif defined(BYTE_ORDER) && BYTE_ORDER == LITTLE_ENDIAN
+#  define WE_ARE_BIG_ENDIAN    0
+#  define WE_ARE_LITTLE_ENDIAN 1
+# elif defined(__386__)
+#  define WE_ARE_BIG_ENDIAN    0
+#  define WE_ARE_LITTLE_ENDIAN 1
+# else
+#  error "Can't determine endianness"
+# endif
 #endif
 
 #include <elf.h>

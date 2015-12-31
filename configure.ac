@@ -159,6 +159,7 @@ AM_CONDITIONAL(ARCH_TILEGX, test x$target_arch = xtilegx)
 AM_CONDITIONAL(OS_LINUX, expr x$target_os : xlinux >/dev/null)
 AM_CONDITIONAL(OS_HPUX, expr x$target_os : xhpux >/dev/null)
 AM_CONDITIONAL(OS_FREEBSD, expr x$target_os : xfreebsd >/dev/null)
+AM_CONDITIONAL(OS_SOLARIS, expr x$target_os : xsolaris2.11 >/dev/null)
 AM_CONDITIONAL(OS_QNX, expr x$target_os : xnto-qnx >/dev/null)
 
 AC_MSG_CHECKING([for ELF helper width])

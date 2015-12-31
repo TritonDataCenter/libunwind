@@ -106,6 +106,8 @@ siglongjmp (sigjmp_buf env, int val)
 #elif defined(__FreeBSD__)
           if (unw_set_reg (&c, UNW_REG_EH + 2, &wp[JB_MASK]) < 0)
               abort();
+#elif defined(__sun__)
+#warning Port me
 #else
 #error Port me
 #endif
