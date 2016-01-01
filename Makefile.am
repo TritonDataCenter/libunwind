@@ -42,7 +42,7 @@ endif
 
 nodist_include_HEADERS = include/libunwind-common.h
 
-SUBDIRS = src tests
+SUBDIRS = src
 
 if CONFIG_DOCS
 SUBDIRS += doc

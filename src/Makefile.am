@@ -481,6 +481,11 @@ if OS_FREEBSD
  libunwind_coredump_la_SOURCES += coredump/_UCD_access_reg_freebsd.c
 endif
 
+if OS_SOLARIS
+ libunwind_la_SOURCES_x86_64_os       = x86_64/Gos-solaris.c
+ libunwind_la_SOURCES_x86_64_os_local = x86_64/Los-solaris.c
+endif
+
 if OS_QNX
  libunwind_la_SOURCES_os	= $(libunwind_la_SOURCES_os_qnx)
  libunwind_la_SOURCES_os_local	= $(libunwind_la_SOURCES_os_qnx_local)
